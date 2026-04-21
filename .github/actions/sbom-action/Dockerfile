@@ -6,9 +6,9 @@ RUN curl -sSfL https://get.anchore.io/syft | sh -s -- -b /usr/local/bin
 RUN curl -sSfL https://get.anchore.io/grype | sh -s -- -b /usr/local/bin
 COPY requirements.txt .
 
-COPY entrypoint.sh .
+COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x entrypoint.sh
 
-CMD ["./entrypoint.sh"]
+CMD ["/bin/bash", "./entrypoint.sh"]
 
 
