@@ -1,0 +1,6 @@
+name: SBOM Scan
+description: Generate SBOM using Syft
+
+runs:
+  using: docker
+  image: Dockerfile
