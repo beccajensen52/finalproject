@@ -1,0 +1,52 @@
+From a028eeedc62334c4dfb5dfe7c812dc3ceecd4f70 Mon Sep 17 00:00:00 2001
+From: Rebecca Jensen <rebeccajensen@unomaha.edu>
+Date: Mon, 20 Apr 2026 23:54:26 -0500
+Subject: [PATCH] config custom SBOM action and made syft sbom
+
+---
+ .github/actions/sbom-action/Dockerfile       | 6 +++++-
+ .github/actions/sbom-action/entrypoint.sh    | 4 ++++
+ .github/actions/sbom-action/requirements.txt | 4 ++++
+ 3 files changed, 13 insertions(+), 1 deletion(-)
+ create mode 100644 .github/actions/sbom-action/entrypoint.sh
+ create mode 100644 .github/actions/sbom-action/requirements.txt
+
+diff --git a/.github/actions/sbom-action/Dockerfile b/.github/actions/sbom-action/Dockerfile
+index e291fd5..a733907 100644
+--- a/.github/actions/sbom-action/Dockerfile
++++ b/.github/actions/sbom-action/Dockerfile
+@@ -4,6 +4,10 @@ RUN apt-get update
+ RUN apt-get install --no-install-recommends -y curl ca-certificates
+ RUN curl -sSfL https://get.anchore.io/syft | sh -s -- -b /usr/local/bin
+ RUN curl -sSfL https://get.anchore.io/grype | sh -s -- -b /usr/local/bin
+-CMD ["echo", "Hello-world"]
++COPY requirements.txt .
++
++COPY entrypoint.sh .
++
++CMD ["bash", "entrypoint.sh"]
+ 
+ 
+diff --git a/.github/actions/sbom-action/entrypoint.sh b/.github/actions/sbom-action/entrypoint.sh
+new file mode 100644
+index 0000000..00b9a19
+--- /dev/null
++++ b/.github/actions/sbom-action/entrypoint.sh
+@@ -0,0 +1,4 @@
++#!/bin/bash
++
++syft requirements.txt -o cyclonedx-json=sbom.json
++grype sbom.json
+diff --git a/.github/actions/sbom-action/requirements.txt b/.github/actions/sbom-action/requirements.txt
+new file mode 100644
+index 0000000..dbbde79
+--- /dev/null
++++ b/.github/actions/sbom-action/requirements.txt
+@@ -0,0 +1,4 @@
++asgiref==3.11.1
++Django==6.0.4
++python-dotenv==1.2.2
++sqlparse==0.5.5
+-- 
+2.43.0
+

@@ -1,0 +1,24 @@
+name: 'Terraformer'
+description: 'Executes terraform plan and apply steps'
+author: 'beccajensen52'
+inputs:
+  ARM_CLIENT_ID:
+    description: 'The Azure Client ID'
+    required: true
+  ARM_CLIENT_SECRET:
+    description: 'The azure client secret'
+    required: true
+  ARM_SUBSCRIPTION_ID:
+    description: 'The azure sub'
+    required: true
+  ARM_TENANT_ID:
+    description: 'The azure tenant id'
+  STATE_KEY:
+    description: 'The unique key for state lookup'
+    required: true
+  TF_STAGE:
+    description: 'The TF deployment stage'
+    required: true
+runs:
+  using: 'docker'
+  inage: 'Dockerfile'
