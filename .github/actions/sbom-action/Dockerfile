@@ -4,10 +4,12 @@ RUN apt-get update
 RUN apt-get install --no-install-recommends -y curl ca-certificates
 RUN curl -sSfL https://get.anchore.io/syft | sh -s -- -b /usr/local/bin
 RUN curl -sSfL https://get.anchore.io/grype | sh -s -- -b /usr/local/bin
-COPY requirements.txt .
 
-COPY entrypoint.sh .
+COPY requirements.txt /requirements.txt
 
-CMD ["bash", "entrypoint.sh"]
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+CMD ["/bin/bash", "/entrypoint.sh"]
 
 
