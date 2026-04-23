@@ -1,33 +1,27 @@
 terraform {
   required_providers {
     azurerm = {
-      source = "hashicorp/azurerm"
+      source  = "hashicorp/azurerm"
       version = "4.68.0"
     }
   }
+
   backend "azurerm" {
-    resource_group_name = "rj-acmp-final"
-    storage_account_name = "acmp2400@storageaccount"
-    container_name = "big-tf-state-acmp2400"
-    use_azuread_auth = true
+    resource_group_name  = "rg-acmp-final"
+    storage_account_name = "acmp2400storageaccount"
+    container_name       = "big-tf-state-acmp2400"
+    use_azuread_auth     = true
   }
 }
 
 provider "azurerm" {
   features {}
 }
-resource "azurerm_container_registry" "teacher-acr" {
-  name                = "acrteacheracmp2400"
-  resource_group_name = "rj-teacher"
+
+resource "azurerm_container_registry" "rebeccajensen-acr" {
+  name                = "acrrebeccajensenacmp2400"
+  resource_group_name = "rg-rebeccajensen"
   location            = "Central US"
   sku                 = "Basic"
   admin_enabled       = false
-}
-
-resource "azurerm_container_registry" "teacher-acr" {
-  name = "acrteacheracmp2400"
-  resource_group_name = "rj-teacher"
-  location = "Central US"
-  sku = "Basic"
-  admin_enabled = false
 }
