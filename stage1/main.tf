@@ -16,11 +16,18 @@ terraform {
 provider "azurerm" {
   features {}
 }
+resource "azurerm_container_registry" "teacher-acr" {
+  name                = "acrteacheracmp2400"
+  resource_group_name = "rj-teacher"
+  location            = "Central US"
+  sku                 = "Basic"
+  admin_enabled       = false
+}
 
 resource "azurerm_container_registry" "teacher-acr" {
   name = "acrteacheracmp2400"
   resource_group_name = "rj-teacher"
   location = "Central US"
-  skw = "Basic"
+  sku = "Basic"
   admin_enabled = false
 }
