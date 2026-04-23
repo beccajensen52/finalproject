@@ -15,4 +15,5 @@ cd "$GITHUB_WORKSPACE/$TF_STAGE"
 terraform version
 terraform init -backend-config="key=$STATE_KEY"
 terraform validate
-terraform plan -auto-approve
+terraform plan 
+terraform apply -auto-approve
