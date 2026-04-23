@@ -29,7 +29,7 @@ provider "azurerm" {
   #location            = "Central US"
   #sku                 = "Basic"
   #admin_enabled       = false
-}
+#}
 
 resource "azurerm_container_group" "aci-rebeccajensen-acmp" {
   name                = "aci-rebeccajensen-acmp"
