@@ -19,7 +19,7 @@ terraform {
 	}
 }
 
-provider "azureerm" {
+provider "azurerm" {
 	features {}
 }
 
