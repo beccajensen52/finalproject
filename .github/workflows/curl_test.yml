@@ -1,6 +1,6 @@
 name: Build-Curl
 on:
-   workflow_dispatch
+   workflow_dispatch:
 permissions: {}
 jobs:
   build-and-curl:
@@ -13,7 +13,7 @@ jobs:
         docker build -t pipeline-test .
     - name: docker_run
       env:
-        DJANGO_SECRET_KEY: $[{ secrets.DJANGO_SECRET_KEY }]
+        DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
       run: |
        docker run -d -p 8000:8000 -e 'DJANGO_SECRET_KEY="$DJANGO_SECRET_KEY"' pipeline-test
     - name: curl_ftw
@@ -25,7 +25,7 @@ jobs:
    runs-on: ubuntu-latest
    steps:
       - name: get_code
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        uses: actions/checkout@0de0fac2e4500dabe0009e67214ff5f5447ce83dd
       - name: sbom_gen_and_scan
         uses: ./.github/actions/sbom-action
       - name: upload_sbom
@@ -36,7 +36,7 @@ jobs:
          compression-level: 0
 
   terraform-stage-1:
-     needs: [build-and-curl,sbom-scan-and-test,build-and-curl]
+     needs: [build-and-curl,sbom-scan-and-test]
      runs-on: ubuntu-latest
      steps: 
      - name: get_code
@@ -49,4 +49,4 @@ jobs:
           ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
           ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
           STATE_KEY: 'teacher'
-          TF_STAGE: 'stage 1'
+          TF_STAGE: 'stage1'
