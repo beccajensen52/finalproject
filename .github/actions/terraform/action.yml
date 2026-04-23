@@ -1,5 +1,5 @@
-name: terraform-stage
-description: Run terraform for a selected stage
+name: 'Terraform container actions'
+description: 'Terraform action'
 
 inputs:
   ARM_CLIENT_ID:
@@ -20,6 +20,9 @@ inputs:
   TF_STAGE:
     description: Terraform stage folder
     required: true
+  DJANGO_SECRET_KEY:
+    description: 'The secret key for django to startup'
+    required: false
 
 runs:
   using: docker
