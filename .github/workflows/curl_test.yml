@@ -61,7 +61,7 @@ jobs:
 
 
   build-tag-push:
-      needs: terraform-stage-1
+      needs: [build-and-curl, sbom-scan-and-test]
       runs-on: ubuntu-latest
       steps:
         - name: get_code
