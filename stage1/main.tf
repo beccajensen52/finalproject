@@ -10,6 +10,7 @@ terraform {
     resource_group_name  = "rg-acmp-final"
     storage_account_name = "acmp2400storageaccount"
     container_name       = "big-tf-state-acmp2400"
+    key                  = "rebeccajensen"
     use_azuread_auth     = true
   }
 }
