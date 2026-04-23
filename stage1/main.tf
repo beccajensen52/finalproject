@@ -17,7 +17,7 @@ provider "azurerm" {
   features {}
 }
 
-resources "azurerm_container_registry" "teacher-acr" {
+resource "azurerm_container_registry" "teacher-acr" {
   name = "acrteacheracmp2400"
   resource_group_name = "rj-teacher"
   location = "Central US"
