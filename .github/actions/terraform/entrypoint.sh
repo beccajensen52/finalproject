@@ -13,6 +13,6 @@ echo "Running terraform for stage: $TF_STAGE"
 cd "$GITHUB_WORKSPACE/$TF_STAGE"
 
 terraform version
-terraform init
+terraform init -backend-config"key=$STATE_KEY"
 terraform validate
 terraform plan
