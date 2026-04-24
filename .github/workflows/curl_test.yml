@@ -110,5 +110,5 @@ jobs:
         cd stage2/
         prefix=$(grep 'dns_name_label' main.tf | cut -d '=' -f2 | tr -d '"' | xargs)
         sleep 50
-        curl -f https://$prefix.centralus.azurecontainer.io:8000
+        curl -f http://$prefix.centralus.azurecontainer.io:8000
           
