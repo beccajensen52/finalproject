@@ -100,6 +100,7 @@ jobs:
         curl -f http://$prefix.centralus.azurecontainer.io:8000
   stage3-the-destroyer:
       needs: pre-eval
+      if: always()
       runs-on: ubuntu-latest
       steps:
       - name: get_code
