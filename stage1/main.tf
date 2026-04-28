@@ -19,7 +19,10 @@ provider "azurerm" {
   features {}
 }
 
-data "azurerm_container_registry" "rebeccajensen-acr" {
+resource "azurerm_container_registry" "rebeccajensen-acr" {
   name                = "acrrebeccajensenacmp2400"
   resource_group_name = "rg-rebeccajensen"
+  location            = "Central US"
+  sku                 = "Basic"
+  admin_enabled       = false
 }
